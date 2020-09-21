@@ -41,7 +41,7 @@
 .row
   .col-md-8
     .card.mb-3#comments-list
-      = render partial: 'request_comments', locals: { comments: @comments, bs_request: @bs_request }
+      = render partial: 'request_comments', locals: { comments: @comments, bs_request: @bs_request, stored_replies: @stored_replies }
     - if @can_handle_request || (@can_add_reviews && @my_open_reviews.any?)
       .card.mb-3
         .bg-light

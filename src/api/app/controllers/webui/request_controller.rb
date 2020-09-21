@@ -115,6 +115,7 @@ class Webui::RequestController < Webui::WebuiController
     # a hint if that package has some package maintainers (issue#1970)
     @show_project_maintainer_hint = !@package_maintainers.empty? && @package_maintainers.exclude?(User.session) && any_project_maintained_by_current_user?
     @comments = @bs_request.comments
+    @stored_replies = ['THOR said NO, Sorry', 'I dont like package name', 'oh, change log cannot contain vovels']
     @comment = Comment.new
 
     @actions = @bs_request.webui_actions(filelimit: diff_limit, tarlimit: diff_limit, diff_to_superseded: @diff_to_superseded, diffs: true)
