@@ -18,7 +18,7 @@
         = link_to("#stored-replies-content-#{stored_replies.count}", title: "this is stored reploy",
           class: 'nav-link text-nowrap', data: { toggle: 'tab' }, role: 'tab') do
           Stored replies 
-          %span.badge.badge-primary{ id: "stored-replies-#{stored_replies.count}" }
+          %span.badge.badge-primary{ id: "storedreplies-counter" }
             = stored_replies.count
 .card-body
   .tab-content
@@ -33,4 +33,4 @@
     -# - if stored_replies.any?
     .tab-pane.fade.show{ id: "stored-replies-content-#{stored_replies.count}" }
       = render partial: 'webui/storedreply/show', locals: { replies: stored_replies,
-        comment_counter_id: "#stored-replies-#{bs_request.number}" }
+        storedreply_counter_id: "#storedreplies-counter" }

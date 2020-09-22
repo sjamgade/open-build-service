@@ -1,8 +1,8 @@
 - replies.each do |reply|
   = render partial: 'webui/storedreply/content', locals: { reply: reply, replies: replies, level: 1 }
 
--# .comment_new.mt-3
--#   = render partial: 'webui/comment/new', locals: { commentable: commentable }
+.comment_new.mt-3
+  = render partial: 'webui/storedreply/new'
 -# 
 -# :javascript
 -#   $(document).ready(function() {

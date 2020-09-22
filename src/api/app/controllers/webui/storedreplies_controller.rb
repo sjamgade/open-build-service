@@ -1,8 +1,9 @@
-class Webui::StoredReplies < Webui::WebuiController
+class Webui::StoredrepliesController < Webui::WebuiController
   before_action :require_login
 
   def create
-    reply = StoredReply.new(params.require(:reply))
+    passed_reply = params.require(:stored_reply)
+    reply = StoredReply.new(reply: passed_reply['reply'])
     reply.user_id = User.session.id
 
     status = if reply.save
@@ -12,7 +13,7 @@ class Webui::StoredReplies < Webui::WebuiController
                flash.now[:error] = "Failed to create reply: #{reply.errors.full_messages.to_sentence}."
                :unprocessable_entity
              end
-    render(partial: 'webui/storedreply/comment_list', locals: { replies: User.session.stored_replies }, status: status)
+    render(partial: 'webui/storedreply/comment_list', locals: { replies: User.session.stored_replies.map {|storedreply| storedreply.reply} }, status: status)
   end
 
   def destroy

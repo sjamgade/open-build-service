@@ -15,6 +15,13 @@ function updateCommentCounter(selector, count) {
 }
 
 $(document).ready(function(){
+  $('.storedreply-list').on('ajax:complete', '.post-storedreply-form', function(_, data) {
+    var $storedreplylist = $(this).closest('.storedreply-list');
+
+    $storedreplylist.html(data.responseText);
+    console.log($storedreplylist.data('storedreply-counter'));
+    updateCommentCounter($storedreplylist.data('storedreply-counter'), 1);
+  });
   $('.comments-list').on('keyup click', '.comment-field', function() {
     resizeTextarea(this);
   });

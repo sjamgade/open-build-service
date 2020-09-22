@@ -353,6 +353,7 @@ OBSApi::Application.routes.draw do
     end
 
     resources :comments, constraints: cons, only: [:create, :destroy, :update], controller: 'webui/comments'
+    resources :storedreplies, constraints: cons, only: [:create, :destroy], controller: 'webui/storedreplies'
 
     ### /apidocs
     get 'apidocs', to: redirect('/apidocs/index')
