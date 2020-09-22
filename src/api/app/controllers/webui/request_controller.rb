@@ -126,7 +126,8 @@ class Webui::RequestController < Webui::WebuiController
     @my_open_reviews = reviews.select { |review| review.matches_user?(user) }
     @can_add_reviews = @bs_request.state.in?([:new, :review]) && (@is_author || @is_target_maintainer || @my_open_reviews.present?)
     #@stored_replies = ['THOR said NO, Sorry', 'I dont like package name', 'oh, change log cannot contain vovels']
-    @stored_replies = user.stored_replies.map { |reply|  reply.reply } 
+    @stored_replies = []
+    @stored_replies = user.stored_replies.map { |reply|  reply.reply } if user
   end
 
   def sourcediff
