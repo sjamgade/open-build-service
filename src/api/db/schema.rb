@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_03_110429) do
+ActiveRecord::Schema.define(version: 2020_09_22_070335) do
 
   create_table "architectures", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC", force: :cascade do |t|
     t.string "name", null: false, collation: "utf8_general_ci"
@@ -1000,6 +1000,12 @@ ActiveRecord::Schema.define(version: 2020_07_03_110429) do
     t.index ["checkable_type", "checkable_id"], name: "index_status_reports_on_checkable_type_and_checkable_id"
   end
 
+  create_table "stored_replies", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
+    t.string "reply"
+    t.integer "user_id"
+    t.index ["user_id"], name: "fk_rails_c006a3a4e3"
+  end
+
   create_table "tokens", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC", force: :cascade do |t|
     t.string "string", collation: "utf8_unicode_ci"
     t.integer "user_id", null: false
@@ -1144,6 +1150,7 @@ ActiveRecord::Schema.define(version: 2020_07_03_110429) do
   add_foreign_key "roles_users", "roles", name: "roles_users_ibfk_2"
   add_foreign_key "roles_users", "users", name: "roles_users_ibfk_1"
   add_foreign_key "status_checks", "status_reports", column: "status_reports_id"
+  add_foreign_key "stored_replies", "users"
   add_foreign_key "tokens", "packages", name: "tokens_ibfk_2"
   add_foreign_key "tokens", "users", name: "tokens_ibfk_1"
   add_foreign_key "user_registrations", "users", name: "user_registrations_ibfk_1"
